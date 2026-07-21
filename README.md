@@ -1,4 +1,39 @@
 # Simple Metaculus forecasting bot
+
+> **This fork runs `codex-bot`, an explicitly secondary bot (`is_primary_bot=false`).**
+> It is not this maker/team's prize-eligible primary entry. Its purpose is a Summer 2026
+> A/B track-record experiment for selecting a future architecture. Every forecast
+> explanation begins with the same secondary-bot disclosure.
+
+## Calibration Bridge architecture
+
+The active logic is `secondary_bot.py`; the small `main.py` adapter preserves the
+upstream workflow command. The stock reference implementation is retained as
+`template_bot.py`. For each question
+it runs two independent evidence lenses: an outside-view analyst builds reference-class
+priors and an inside-view adversary decomposes mechanisms, cruxes and resolution traps.
+Three repeated judges then bridge those dossiers, shrink unsupported extremes toward
+the prior, and aggregate through `forecasting-tools`. Binary, multiple-choice and
+numeric questions have distinct calibrated protocols. Date and conditional questions
+retain the template implementation but receive the mandatory secondary-bot note.
+
+Safety and tournament controls:
+
+- every run calls `/api/users/me/` and fails unless `is_bot=true` and
+  `is_primary_bot=false`;
+- `test_questions` targets only tournament `bot-testing-area`;
+- live Summer FutureEval plus MiniBench requires the explicit `--confirm-live` flag;
+- the live and Metaculus Cup GitHub schedules are disabled while GitHub runner traffic
+  is SSL-blocked; the production fallback is a single locked VPS cron;
+- no private LLM key is required: the bot uses Metaculus's sponsored proxy and spends
+  £0 of business budget.
+
+Offline prompt checks:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
 This repository contains a simple bot meant to get you started with creating your own bot for the AI Forecasting Tournament. Go to https://www.metaculus.com/futureeval/participate/ for more info and tournament rules (and then go to the  "Getting Started" section of our [resources](https://www.metaculus.com/notebooks/38928/ai-benchmark-resources/#want-to-join-the-ai-forecasting-benchmark) page).
 
 **Brand new to this?** You can get a working bot running in about 5 minutes without writing a single line of code — just fork this repo, paste two API keys into GitHub, and click "Run workflow". See **[Quick start](#quick-start--fork-and-use-github-actions)** below.
