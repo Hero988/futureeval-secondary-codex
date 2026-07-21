@@ -34,6 +34,17 @@ Offline prompt checks:
 python -m unittest discover -s tests -v
 ```
 
+If GitHub runners are SSL-blocked and sponsored LLM access is still pending, the VPS
+may validate the posting path against exactly one unforecasted binary sandbox question:
+
+```bash
+python smoke_test.py
+```
+
+This deterministic smoke test targets only `bot-testing-area`, posts the explicit
+secondary label as a private note before its forecast, and is not used in Summer
+FutureEval or MiniBench.
+
 This repository contains a simple bot meant to get you started with creating your own bot for the AI Forecasting Tournament. Go to https://www.metaculus.com/futureeval/participate/ for more info and tournament rules (and then go to the  "Getting Started" section of our [resources](https://www.metaculus.com/notebooks/38928/ai-benchmark-resources/#want-to-join-the-ai-forecasting-benchmark) page).
 
 **Brand new to this?** You can get a working bot running in about 5 minutes without writing a single line of code — just fork this repo, paste two API keys into GitHub, and click "Run workflow". See **[Quick start](#quick-start--fork-and-use-github-actions)** below.
